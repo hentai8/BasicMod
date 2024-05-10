@@ -1,9 +1,11 @@
 package hentai8mod;
 
 import basemod.BaseMod;
+import basemod.interfaces.EditCharactersSubscriber;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
+import hentai8mod.character.MyCharacter;
 import hentai8mod.util.GeneralUtils;
 import hentai8mod.util.KeywordInfo;
 import hentai8mod.util.TextureLoader;
@@ -29,6 +31,7 @@ import java.util.*;
 
 @SpireInitializer
 public class BasicMod implements
+        EditCharactersSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         PostInitializeSubscriber {
@@ -47,6 +50,8 @@ public class BasicMod implements
     //This will be called by ModTheSpire because of the @SpireInitializer annotation at the top of the class.
     public static void initialize() {
         new BasicMod();
+
+        MyCharacter.Meta.registerColor();
     }
 
     public BasicMod() {
@@ -209,5 +214,10 @@ public class BasicMod implements
         else {
             throw new RuntimeException("Failed to determine mod info/ID based on initializer.");
         }
+    }
+
+    @Override
+    public void receiveEditCharacters() {
+        MyCharacter.Meta.registerCharacter();
     }
 }
