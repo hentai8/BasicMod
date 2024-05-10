@@ -1,4 +1,4 @@
-package basicmod.util;
+package hentai8mod.util;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 

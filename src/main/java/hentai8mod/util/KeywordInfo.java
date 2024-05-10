@@ -1,4 +1,4 @@
-package basicmod.util;
+package hentai8mod.util;
 
 public class KeywordInfo {
     public String ID = "";
