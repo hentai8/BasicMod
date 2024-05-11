@@ -8,5 +8,9 @@
       "If you need to use it for stuff.",
       "Blizzard is a good example for this."
     ]
+  },
+  "${modID}:MyCard01": {
+    "NAME": "Not Iron Wave",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
   }
 }

@@ -1,10 +1,8 @@
 package hentai8mod;
 
 import basemod.BaseMod;
-import basemod.interfaces.EditCharactersSubscriber;
-import basemod.interfaces.EditKeywordsSubscriber;
-import basemod.interfaces.EditStringsSubscriber;
-import basemod.interfaces.PostInitializeSubscriber;
+import basemod.AutoAdd;
+import basemod.interfaces.*;
 import hentai8mod.character.MyCharacter;
 import hentai8mod.util.GeneralUtils;
 import hentai8mod.util.KeywordInfo;
@@ -29,9 +27,12 @@ import org.scannotation.AnnotationDB;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+import hentai8mod.cards.*;
+
 @SpireInitializer
 public class BasicMod implements
         EditCharactersSubscriber,
+        EditCardsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         PostInitializeSubscriber {
@@ -219,5 +220,13 @@ public class BasicMod implements
     @Override
     public void receiveEditCharacters() {
         MyCharacter.Meta.registerCharacter();
+    }
+
+    @Override
+    public void receiveEditCards() {
+        new AutoAdd(modID) //Loads files from this mod
+                .packageFilter(BaseCard.class) //In the same package as this class
+                .setDefaultSeen(true) //And marks them as seen in the compendium
+                .cards(); //Adds the cards
     }
 }
